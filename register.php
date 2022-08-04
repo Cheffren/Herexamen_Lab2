@@ -44,10 +44,6 @@ if ($password !== $passwordconf) {
 if (strlen($password)<6) {
 	$error = "Wachtwoorden moet minstens 6 karakters bevatten";
 }
-
-
-
-
 }
 
 //include_once("./header.php")
@@ -56,7 +52,7 @@ if (strlen($password)<6) {
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Bybel</title>
+	<title>Lightpath</title>
 	<link rel="stylesheet" href="./CSS/styling.css">
 </head>
 <body>

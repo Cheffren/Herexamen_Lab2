@@ -24,7 +24,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Log in</title>
+  <title>Lightpath</title>
     <link rel="stylesheet" href="./CSS/styling.css">
 </head>
 <body>

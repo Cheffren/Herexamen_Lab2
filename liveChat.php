@@ -1,32 +1,18 @@
 <?php
 include_once(__DIR__."/Classes/Chat.php");
 include_once(__DIR__."/Classes/stream.php");
-
-
+require_once('includes/header.inc.php');
 
 $chatMessages = Chat::selectMessages();
-
 $show = stream::showTitle();
-
-
-
 ?>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Lightpath</title>
     <link rel="stylesheet" href="css/style.css">
-    <nav>
-        <a href="startpagina.php">LightPath</a>
-        <a href="">Home</a>
-        <a href="live.php">Live</a>
-        <a href="">Gemeenschap</a>
-        <a href="">Kalender</a>
-        <a href="">Contacten</a>
-        <a href="">Profiel</a>
-    </nav>
 </head>
 <body>
         <div class="video">
