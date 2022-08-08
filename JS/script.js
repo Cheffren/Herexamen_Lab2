@@ -82,5 +82,52 @@ e.preventDefault();
 
     })
 
+
+   /* let submitButton = document.querySelector("#submitPost");
+    submitButton.addEventListener("click", function () {
+
+
+        //Haal de username, tekst en afbeeldingen er van
+
+        let text = document.querySelector("#postText").value;
+        let image = document.querySelector("#postImage").value;
+        let username = submitButton.dataset.username;
+
+        let form = new FormData();
+        form.append("text",text);
+        form.append("image", image);
+        form.append("username", username);
+
+        fetch("ajax/savePost", {
+
+
+
+
+
+
+
+
+
+
+
+            
+        })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    })
+*/
     
     

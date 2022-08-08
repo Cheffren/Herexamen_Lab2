@@ -24,7 +24,7 @@ var_dump($_SESSION['username']);
         <a href="startpagina.php">LightPath</a>
         <a href="">Home</a>
         <a href="live.php">Live</a>
-        <a href="">Gemeenschap</a>
+        <a href="posts.php">Gemeenschap</a>
         <a href="">Kalender</a>
         <a href="">Contacten</a>
         <a href="">Profiel</a>

@@ -146,6 +146,7 @@
             $_SESSION["email"] = $email;
             $_SESSION["wachtwoord"] = $password;
             $_SESSION["username"] = $name;
+            //$_SESSION["id"] = $id;
     
             
             //$_SESSION["name"] = $name;
