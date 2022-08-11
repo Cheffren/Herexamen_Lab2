@@ -83,51 +83,98 @@ e.preventDefault();
     })
 
 
-   /* let submitButton = document.querySelector("#submitPost");
-    submitButton.addEventListener("click", function () {
+
+let submitButton = document.querySelector(".submitComment");
+//let commentAmount = document.querySelector(".amountOfComments");
+
+submitButton.addEventListener("click", function (e) {
+    console.log("hoi");
+//postId
+//userName
+//comment text
+
+let text = document.querySelector(".commentText").value;
+//Post naar database via AJAX;
+let formData = new FormData();
+//Vraagt specifiek element waarop geklikt werd uit de HTML
+let userName = submitButton.dataset.username;
+let postId = submitButton.dataset.postid;
+//console.log(postId);
+
+formData.append("text", text);
+formData.append("username", userName);
+formData.append("postId", postId);
+
+fetch("ajax/saveComment.php", {
+
+    method: "POST",
+    body: formData
+})
+.then(response=>response.json()
+
+)
+.then(result => {
+        let newComment = document.createElement("div");
+        newComment.innerHTML = result.user + " " + result.body;
+        document.querySelector(".comments").appendChild(newComment);
+        //commentAmount.innerHTML ++ ;
+        document.querySelector("#commentText").value = "";
+
+})
+.catch (error=> {
+
+    console.error("Error:", error);
+});
+
+e.preventDefault();
+});
+    
 
 
-        //Haal de username, tekst en afbeeldingen er van
-
-        let text = document.querySelector("#postText").value;
-        let image = document.querySelector("#postImage").value;
-        let username = submitButton.dataset.username;
-
-        let form = new FormData();
-        form.append("text",text);
-        form.append("image", image);
-        form.append("username", username);
-
-        fetch("ajax/savePost", {
 
 
+let deletePost = document.querySelectorAll("#deletePost");
+for (let i = 0; i < deletePost.length; i++) {
 
 
-
-
-
-
-
-
-
-            
-        })
-
-
-
-
-
-
-
-
-
-
-
+        deletePost[i].addEventListener("click", function() {
+    
+            let username = deletePost[i].dataset.username;
+            let id = deletePost[i].dataset.id;
+    
+            console.log(id);
+    
+            let form = new FormData();
+    
+            form.append("username", username);
+            form.append("id", id);
+    
+            fetch("ajax/deletePost.php", {
+                method: "POST",
+                body:form
+            })
+            .then(response => response.json())
+            .then (result => {
+                console.log("comment deleted");
+                console.log(result);
+    
+    
+            })
+            .catch(error => {
+                console.error("Error:", error);
+    
+            })  
+    
 
 
 
 
+
+
+
+
+
+
+    
     })
-*/
-    
-    
+}

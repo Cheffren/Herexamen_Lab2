@@ -273,3 +273,55 @@ td {
 .today {
     background-color: darkgrey;
 }
+
+/* Hier komt de code voor de posts*/
+
+.likeButton{
+
+    width: 30px;
+    height: 30px;
+
+}
+.like {
+    position: relative;
+    bottom: -18%;
+    left: 1%;
+
+    background: none;
+    border: none;
+}
+.commentForm {
+
+    display: none;
+
+
+}
+.comment {
+    position: relative;
+bottom: -18%;
+left: 5%;
+    background: none;
+    border: none;
+}
+.commentButton {
+
+
+ width: 30px;
+    height: 30px;
+
+
+
+
+}
+
+.showButtons{
+
+    position: relative;
+    top: 20%;
+
+
+
+
+
+
+}

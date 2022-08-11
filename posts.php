@@ -3,12 +3,13 @@ error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
 
-include_once(__DIR__."/Classes/Post.php");
+include_once(__DIR__."/bootstrap.php");
+
 
 session_start();
 //Alles wat in het formulier gezet wordt, moet in de databank komen
 //var_dump($_SESSION['username']);
-if (!empty($_POST)) {
+if (!empty($_POST['submitPost'])) {
 
    try {
 
@@ -30,7 +31,7 @@ if (!empty($_POST)) {
 $po = new Post();
 $pos = $po->feed();
 
-var_dump($po);
+//var_dump($po);
 
 
 //Vanaf het in de databank zit moet het weergegeven worden
@@ -42,6 +43,7 @@ var_dump($po);
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/style.css">
     <title>Document</title>
 </head>
 <body>
@@ -68,23 +70,85 @@ var_dump($po);
 
     <div class="post">
       <?php foreach ($pos as $p): ;?>
-        <div>
+      <div>
+            <?php  if ($p['username'] == $_SESSION['username']):?>
+            <button class="deletePost" data-id = "<?php echo $p['id']?>" data-username = "<?php echo $_SESSION['username'];?>">verwijder Post</button>
+                <?php endif;?>
             <h4><?php echo $p['username'] ?></h4>
+            <p><?php echo $p['id']?></p>
+            <?php $images = Post::getPictursByPostId($p['id']); ?>
+            <?php var_dump($images)?>
 
-            <img id="post-Image" src="<?php echo htmlspecialchars($p['pictures'])?>" alt="foto">
-            <?php if (!empty($p['picture2'])) : ?>
-            <img id="post-Image2" src="<?php echo htmlspecialchars($p['picture2'])?>" alt="foto">
-            <?php endif;?>
-            <?php if (!empty($p['picture3'])): ?>
-            <img id="post-Image3" src="<?php echo htmlspecialchars($p['picture3'])?>" alt="foto">
-            <?php endif;?>
+            <?php foreach ($images as $img) : ?>
+                <?php var_dump($img['id'])?>
+            <img id="post-Image" src="<?php echo htmlspecialchars($img['pictures'])?>" alt="foto">
+          <?php endforeach;?>
+          <?php $amountOfComments = Comment::getCommentsCount($p['id'])?>
+
+          <div class="showButtons">
+          <button class="comment"><img class="commentButton"  src="./images/chat-bubble.png" alt=""></button> <p class="AmountOfComments"><?php echo $amountOfComments?></p>
+          <?php $amountOfLikes = Likes::countLikes($p['id'])?>
+          <button class="like" data-username = "<?php echo $_SESSION['username']?>" data-postId="<?php echo $p['id'] ?>"><img class = "likeButton"src="./images/thumbs-up.png" alt="like"></button><p class="amountOfLikes"><?php ?><?php echo $amountOfLikes?></p>
+          </div>
+ 
 
             <h4><?php echo $_SESSION['username'] ?></h4>
             <p><?php echo $p['text']?></p>
 
+
+
+            <div class="comments">
+                   <?php $allComments = Comment::getTheComment($p['id']);?>
+                    
+                    <?php foreach($allComments as $c) : ;?>
+                        <h4><?php echo $c['username'] ?></h4>
+                        <p><?php echo $c['commentText'] ?></p>
+                        <?php echo $c['commentId'];?>
+                        <?php if ($c['username'] === $_SESSION['username']): ;?>
+
+                            <button class="deleteComment" data-username="<?php echo $_SESSION['username']?>" data-commentId ="<?php echo $c['commentId']?>" >delete</button>
+                            <?php endif; ?>
+                <?php endforeach?> 
+                <?php if (!empty($_POST['submitComment'])) {
+
+$comment = new Comment();
+$comment->setUserName($_SESSION['username']);
+$comment->setComment($_POST['commentText']);
+$comment->setPostId($p['id']);
+$comment->saveComment();
+
+var_dump($p['id']);
+
+
+
+
+
+
+
+} ?>
+ <form action="" method="post" class="commentForm">
+
+<input type="text" name="commentText" class="commentText">
+<input type="submit" class="submitComment" data-postId="<?php echo $p['id'] ?>" data-username = "<?php echo $_SESSION['username'] ?>" name="submitComment">
+
+</form>
+            
+
+                
+               
+
+</div>
+
+
+
+
+
         </div>
 
         <?php endforeach;?>
+        
+
+
 
     </div>
     <div>
@@ -116,6 +180,7 @@ var_dump($po);
 
 
 
-    
+    <script src="./JS/comment.js"></script>
+
 </body>
 </html>
