@@ -1,9 +1,7 @@
 <?php 
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
-
-
-include_once(__DIR__."/bootstrap.php");
+require_once('bootstrap.php');
+require_once('includes/header.inc.php');
+session_start();
 
 
 session_start();
@@ -47,26 +45,8 @@ $pos = $po->feed();
     <title>Document</title>
 </head>
 <body>
-    <nav>
-        <a href="">Lightpath</a>
-        <a href="">Uitzendingen</a>
-        <a href="">Community</a>
-        <a href="">Kalender</a>
-        <a href="">Contact</a>
-        <a href="">Profiel</a>
-    </nav>
 
     <h1>Community</h1>
-
-
-
-
-
-
-
-
-
-
 
     <div class="post">
       <?php foreach ($pos as $p): ;?>

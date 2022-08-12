@@ -1,10 +1,5 @@
 <?php
-    include_once(__DIR__ . "./Classes/User.php");
-
-    //sessie starten
-
-    session_start();
-	session_destroy();
+	require_once('bootstrap.php');
 
     if (!empty($_POST)) {
     	try {

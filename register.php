@@ -1,9 +1,7 @@
 <?php
-
-include_once(__DIR__ . "./Classes/User.php");
+require_once('bootstrap.php');
 
 //Pagina verwijst door naar login
-
 //Kijken of velden leeg zijn
 //Als ze leeg zijn --> error true
 //Connectie maken met database
@@ -17,7 +15,6 @@ $passwordconf = $_POST['password_conf'];
 		
 //Als het wachtwoord hetzelfde is als passwordconf en als ze minstens 6 characters zijn dan wordt je ingelogd
 		if (  $password === $passwordconf && strlen($password)>=6) {
-
 				try {
 				$user = new User();
 				$user->setName($name);
@@ -32,7 +29,6 @@ $passwordconf = $_POST['password_conf'];
 
 				catch (Throwable $error) {
 					$error = $error->getMessage();
-					
 				}
 				/*catch (Throwable $errorUser) {
 					$errorUser = $errorUser->getMessage();
@@ -44,10 +40,6 @@ if ($password !== $passwordconf) {
 if (strlen($password)<6) {
 	$error = "Wachtwoorden moet minstens 6 karakters bevatten";
 }
-
-
-
-
 }
 
 //include_once("./header.php")
@@ -56,7 +48,7 @@ if (strlen($password)<6) {
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Bybel</title>
+	<title>Lightpath</title>
 	<link rel="stylesheet" href="./CSS/styling.css">
 </head>
 <body>
@@ -97,19 +89,13 @@ if (strlen($password)<6) {
 			
 				</div>
 				
-		
 				<div>
 				<input type="submit" value="Meld je aan" id="btn">
 				</div>
 
 				<p id="hebaccount">Heb je al een account? <a href="./logIn.php">Login in</a></p>
-
-
 		</div>
 		</form>
-
-
-	
 </body>
 </html>
 
