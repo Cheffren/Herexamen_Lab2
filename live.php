@@ -1,15 +1,13 @@
 <?php
-include_once(__DIR__."/Classes/Chat.php");
-include_once(__DIR__."/Classes/stream.php");
-
+require_once('bootstrap.php');
+require_once('includes/header.inc.php');
 session_start();
-
 
 $chatMessages = Chat::selectMessages();
 $show = stream::showTitle();
 
 
-var_dump($_SESSION['username']);
+//var_dump($_SESSION['username']);
 
 
 ?>
@@ -18,8 +16,9 @@ var_dump($_SESSION['username']);
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Lightpath</title>
     <link rel="stylesheet" href="css/style.css">
+<<<<<<< HEAD
     <nav>
         <a href="startpagina.php">LightPath</a>
         <a href="">Home</a>

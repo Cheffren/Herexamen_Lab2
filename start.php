@@ -1,33 +1,14 @@
 
 <?php
-
-
-include_once(__DIR__."/Classes/Nieuws.php");
-
-//session_start();
+require_once('bootstrap.php');
 //Alles wat in het formulier gezet wordt, moet in de databank komen
 //var_dump($_SESSION['username']);
-
-
-
-
-
-
 if (!empty($_POST)) {
-
-
         $nieuws = new Nieuws();
         $nieuws->setTitle($_POST ['title']);
         $nieuws->setDescription($_POST['article']);
         $nieuws->setCategory($_POST['category']);
-
-
-     
-
         $nieuws->addNieuws();
-
-
-    
 }
 //var_dump($nieuws);
     if (isset($_GET['category'])) {
@@ -42,33 +23,14 @@ $new = $news->showNews($pagina);
 
 //echo $pagina;
 
-
-
-
-
-
-
-
-
 ?><html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Lightpath</title>
 </head>
 <body>
-    <nav>
-    <a href="">Lightpath</a>
-    <a href="">Uitzendingen</a>
-    <a href="">Gemeenschap</a>
-    <a href="">Kalender</a>
-    <a href="">Contact</a>
-    <a href="">Profiel</a>
-
-
-
-    </nav>
     <div class="categorie">
     <a href="start.php?category=<?php echo "Doopsel" ?>"><img src="" alt="">Doopsel</a>
     <a href="start.php?category=<?php echo "Communie" ?>"><img src="" alt="">Communie</a>
