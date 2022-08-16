@@ -27,7 +27,7 @@ var_dump($_SESSION['username']);
         <a href="posts.php">Gemeenschap</a>
         <a href="">Kalender</a>
         <a href="">Contacten</a>
-        <a href="">Profiel</a>
+        <a href="profile.php">Profiel</a>
     </nav>
 </head>
 <body>

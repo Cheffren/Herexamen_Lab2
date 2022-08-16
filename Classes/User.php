@@ -109,7 +109,7 @@
             }
             else {
                 
-                $statement = $conn->prepare("INSERT INTO `gebruiker` (`id`, `email`, `username`, `wachtwoord`, `profielfoto`, `role`) VALUES (NULL, :email, :username, :wachtwoord, NULL, '0');");
+                $statement = $conn->prepare("INSERT INTO `gebruiker` (`id`, `email`, `username`, `password`, `profielfoto`, `role`) VALUES (NULL, :email, :username, :wachtwoord, NULL, '0');");
                 $statement->bindValue(":username",$name);
                 $statement->bindValue(":wachtwoord",$password);
                 $statement->bindValue(":email",$email);
@@ -135,7 +135,7 @@
         //var_dump($user);
     
         //wachtwoord verifiëren
-        $hash = $user["wachtwoord"];
+        $hash = $user["password"];
         if(password_verify($password, $hash)){
             // login
             echo "oke";
@@ -144,7 +144,7 @@
     
             //$name = $this->getName();
             $_SESSION["email"] = $email;
-            $_SESSION["wachtwoord"] = $password;
+            $_SESSION["password"] = $password;
             $_SESSION["username"] = $name;
             //$_SESSION["id"] = $id;
     
