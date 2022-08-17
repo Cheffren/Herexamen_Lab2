@@ -10,7 +10,7 @@
         <a href="posts.php">Gemeenschap</a>
         <a href="kalender.php">Kalender</a>
         <a href="">Contacten</a>
-        <a href="">Profiel</a>
+        <a href="" class="profileLink">Profiel</a>
     </nav>
 </body>
 </html>

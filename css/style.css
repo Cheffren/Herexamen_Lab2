@@ -2,13 +2,24 @@
 body {
     background-color: lightgrey;
 }
+nav {
+    background-color: #5357AD;
+    padding: 1.5em;
+    margin-bottom: 2em;
+
+}
 nav a { 
-    margin: 3em;
+    margin: 1em;
     font-size: 22pt;
     font-family: Gabriola;
     text-decoration: none;
     color: black;
     
+    
+}
+.profileLink {
+    position: relative;
+    right: -40%;
 }
 nav a:hover {
     color: #9BCAF2;
@@ -318,6 +329,191 @@ left: 5%;
 
     position: relative;
     top: 20%;
+
+
+
+
+
+
+}
+
+
+/*Hulp formulier voor vragen*/
+
+.vragen {
+    
+    text-decoration: none;
+    color: #313131;
+
+    font-family: inter;
+    font-size: 16pt;
+    margin-left: 20%;
+    margin-top: 20px;
+
+
+}
+.vragen:hover {
+
+border-bottom: #5357AD solid 2px;
+padding-bottom: 2.5px;
+
+}
+.vragen:active {
+    color: #5357AD;
+    border-bottom: #5357AD solid 2px;
+padding-bottom: 2.5px;
+
+
+}
+.vragen:visited {
+
+    color: #5357AD;
+    border-bottom: #5357AD solid 2px;
+padding-bottom: 2.5px;
+
+}
+.contactForm {
+
+    background-color: #D9D9D9;
+
+    width: 1030px;
+    height: 590px;
+    position: relative;
+    left: 25%;
+    margin-top: 6%;
+    font-family: sans-serif;
+
+}
+.contactForm img {
+
+  
+    background-color: blue;
+    height: 240px;
+    width: 240px;
+    margin-top: 5%;
+    margin-left: 0%;
+}
+ .info {
+    margin-left: 5%;
+}
+.hulp {
+    position: relative;
+    left: 30%;
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    row-gap: 8px;
+    top: -70%;
+    width: 460px;
+
+}
+.vraag {
+    height: 171px;
+    border-radius: 0px 20px 0px 20px;
+
+
+}
+.hulp h3 {
+    margin-left: -10%;
+    text-align: center;
+}
+.formInputHelp {
+
+border-radius: 0px 20px 0px 20px;
+height: 30px;
+
+
+}
+.map {
+    width: 1030px;
+    height: 290px;
+    position: relative;
+    left: 25%;
+
+
+}
+.triangle {
+    width: 0;
+    height: 0;
+    border: solid 90px;
+    border-color: transparent transparent #D9D9D9 transparent;
+    rotate: 180deg;
+    position: absolute;
+    left: 48%;
+    z-index: 99;
+}
+.sacramentForm {
+    font-size: 16pt;
+    text-decoration: none;
+    margin-left: 5%;
+    color: black;
+}
+.sacramentForm:hover {
+
+    border-bottom: #5357AD solid 2px;
+    padding-bottom: 2.5px;
+    opacity: 100%;
+    color: #5357AD;
+
+
+
+
+
+}
+.sacramentForm:active {
+
+    border-bottom: #5357AD solid 2px;
+    padding-bottom: 2.5px;
+    opacity: 100%;
+    color: #5357AD;
+
+
+
+
+
+}
+.sacramentForm:visited {
+
+    border-bottom: #5357AD solid 2px;
+    padding-bottom: 2.5px;
+    opacity: 100%;
+    color: #5357AD;
+
+
+
+
+
+}
+#sacrament {
+
+    position: relative;
+    left: 30%;
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    row-gap: 8px;
+    top: -70%;
+    width: 460px;
+
+}
+.inputSac {
+    border-radius: 0px 20px 0px 20px;
+    height: 30px;
+
+}
+#mededeling {
+    height: 97px;
+    border-radius: 0px 20px 0px 20px;
+
+
+}
+#submitSac {
+    padding: 0.5em;
+    border-radius: 0px 20px 0px 20px;
+
+}
+#select-box {
+
+    border-radius: 0px 20px 0px 20px;
+    height: 30px;
 
 
 
