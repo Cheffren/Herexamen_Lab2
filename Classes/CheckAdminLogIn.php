@@ -10,10 +10,10 @@ class CheckAdminLogIn {
         $config = self::getConfig();
         $adminEmail = $config['adminEmail'];
         if($_SESSION["email"] !== $adminEmail){
-            return true;
+            return false;
         }
         else{
-            return false;
+            return true;
         };
     }
 }
