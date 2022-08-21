@@ -3,7 +3,7 @@ require_once('bootstrap.php');
 session_start();
 require_once('includes/header.inc.php');
 $checkAdmin = new CheckAdminLogIn;
-if($checkAdmin->checkAdmin()){
+if($checkAdmin->checkAdmin() === false){
     header('Location: __DIR__ . /../live.php');
 }
 
@@ -13,7 +13,6 @@ if(!empty($_POST)) {
 $stream = new stream();
 $stream->setTitle($_POST['titel']);
 $s = $stream->saveTitle();
-
 
 }
 $show = stream::showTitle();
