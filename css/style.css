@@ -17,7 +17,7 @@ nav a {
     
     
 }
-.profileLink {
+.rightNav {
     position: relative;
     right: -40%;
 }
@@ -46,7 +46,7 @@ nav a:active {
     height: 649px;
     position: absolute;
     left: 18%;
-    top: 15%;
+    top: 20%;
     border-radius: 10px;
 
 }
@@ -94,7 +94,7 @@ nav a:active {
 
 .video {
     position: absolute;
-    top: 15%;
+    top: 20%;
     left: 20%;
 
     width: 80%;
@@ -114,7 +114,7 @@ nav a:active {
     font-family: roboto;    
 }
 .video video {
-    width: 965px ;
+    width: 965px;
     height: 543px;
     border-radius: 10px 0px 0px 10px;
 
