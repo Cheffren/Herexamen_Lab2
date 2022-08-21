@@ -3,7 +3,9 @@ require_once('bootstrap.php');
 session_start();
 require_once('includes/header.inc.php');
 $checkAdmin = new CheckAdminLogIn;
-$checkAdmin->checkAdmin();
+if($checkAdmin->checkAdmin()){
+    header('Location: __DIR__ . /../live.php');
+}
 
 if(!empty($_POST)) {
 
