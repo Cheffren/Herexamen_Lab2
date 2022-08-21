@@ -16,15 +16,15 @@ $passwordconf = $_POST['password_conf'];
 //Als het wachtwoord hetzelfde is als passwordconf en als ze minstens 6 characters zijn dan wordt je ingelogd
 		if (  $password === $passwordconf && strlen($password)>=6) {
 				try {
-				$user = new User();
-				$user->setName($name);
-				$user->setEmail($email);
-				$user->setPassword($password);
-				$user->SignUp();
-				session_start();
-				$_SESSION['email'] = $user->getEmail();
-				$_SESSION['name'] = $user->getName();
-				//header("Location: login.php");
+					$user = new User();
+					$user->setName($name);
+					$user->setEmail($email);
+					$user->setPassword($password);
+					$user->SignUp();
+					session_start();
+					$_SESSION['email'] = $user->getEmail();
+					$_SESSION['name'] = $user->getName();
+					header("location: index.php");
 				}
 
 				catch (Throwable $error) {

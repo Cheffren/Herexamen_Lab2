@@ -1,9 +1,12 @@
 <?php 
 require_once('bootstrap.php');
-require_once('includes/header.inc.php');
 session_start();
+require_once('includes/header.inc.php');
+$checkAdmin = new CheckAdminLogIn;
+$checkAdmin->checkAdmin();
 
 if(!empty($_POST)) {
+
 
 $stream = new stream();
 $stream->setTitle($_POST['titel']);
@@ -26,10 +29,6 @@ $show = stream::showTitle();
 </head>
 <body>
     <div class="background">
-
-
-
-
     </div>
     <div class="screen">
         <?php foreach ($show as $sh):?>
@@ -42,16 +41,15 @@ $show = stream::showTitle();
 
         <label for="Geef de titel in"> Titel:</label>
         <input class="titel" type="text" required placeholder="Geef titel in" name="titel">
-        <span class="error"><?php  if(empty($_POST['titel'])) {echo "Je uitzending moet een titel hebben";}?></span>
+        <span class="error">
+            <?php  
+            if(empty($_POST['titel'])){
+                echo "Je uitzending moet een titel hebben";
+            }?>
+        </span>
         <input class="start" type="submit" value = "Start viering" name="start">
 
     </form>
-
-
-
-
     </div>
-
-    
 </body>
 </html>

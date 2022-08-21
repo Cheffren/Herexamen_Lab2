@@ -1,7 +1,7 @@
 <?php
 require_once('bootstrap.php');
-require_once('includes/header.inc.php');
 session_start();
+require_once('includes/header.inc.php');
 
 $chatMessages = Chat::selectMessages();
 $show = stream::showTitle();
@@ -11,23 +11,13 @@ $show = stream::showTitle();
 
 
 ?>
-<html lang="en">
+<html lang="nl">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lightpath</title>
     <link rel="stylesheet" href="css/style.css">
-<<<<<<< HEAD
-    <nav>
-        <a href="startpagina.php">LightPath</a>
-        <a href="">Home</a>
-        <a href="live.php">Live</a>
-        <a href="posts.php">Gemeenschap</a>
-        <a href="">Kalender</a>
-        <a href="">Contacten</a>
-        <a href="profile.php">Profiel</a>
-    </nav>
 </head>
 <body>
         <div class="video">

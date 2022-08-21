@@ -1,7 +1,7 @@
 <?php
 require_once('bootstrap.php');
-require_once('includes/header.inc.php');
 session_start();
+require_once('includes/header.inc.php');
 
 
         $id = $_GET['id'];
@@ -16,7 +16,7 @@ session_start();
             $nieuwtje = new Nieuws();
             $nieuwtje->deleteNews($id);
         }
-?><html lang="en">
+?><html lang="nl">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">

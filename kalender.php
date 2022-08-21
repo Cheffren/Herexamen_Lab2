@@ -1,7 +1,7 @@
 <?php 
 require_once('bootstrap.php');
-require_once('includes/header.inc.php');
 session_start();
+require_once('includes/header.inc.php');
 ?>
 
 <!DOCTYPE html>
@@ -12,9 +12,9 @@ session_start();
     <script src="./JS/Kalender.js"></script>
   </head>
   <body>
-    <!-- (A) PERIOD SELECTOR -->
+    <!--Periode selecteren -->
     <div id="calPeriod"><?php
-      //Maand sellector
+      //Maand selecteren
       $months = [
         1 => "januari", 2 => "februari", 3 => "maart", 4 => "april",
         5 => "mei", 6 => "juni", 7 => "juli", 8 => "augustus",
@@ -28,7 +28,7 @@ session_start();
         );
       }
       echo "</select>";
-      //Jaar sellector
+      //Jaar selecteren
       echo "<input type='number' id='calyear' value='".date("Y")."'/>";
     ?></div>
     <div id="calwrap"></div>

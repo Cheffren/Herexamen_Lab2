@@ -1,7 +1,7 @@
 <?php 
 require_once('bootstrap.php');
-require_once('includes/header.inc.php');
 session_start();
+require_once('includes/header.inc.php');
 
 
 session_start();
@@ -10,19 +10,14 @@ session_start();
 if (!empty($_POST['submitPost'])) {
 
    try {
-
         $post = new Post();
         $text = $_POST['postText'];
         $post->setText($text);
         $post->addPost($_SESSION['username']);
-
-
     }
     
     catch(\Throwable $th) {
-
         $error = $th->getMessage(); 
-
     }
 }
 
@@ -36,7 +31,7 @@ $pos = $po->feed();
 
 //Het moet zonder te refreshen weergegeven worden
 ?>
-<html lang="en">
+<html lang="nl">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
