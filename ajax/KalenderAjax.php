@@ -1,40 +1,39 @@
 <?php
-// (A) INVALID AJAX REQUEST
+//INVALID AJAX REQUEST
 if (!isset($_POST["req"])) { exit("INVALID REQUEST"); }
 require "../Classes/KalenderBody.php";
 switch ($_POST["req"]) {
-  // (B) DRAW CALENDAR FOR MONTH
+  //DRAW CALENDAR FOR MONTH
   case "draw":
-    // (B1) DATE RANGE CALCULATIONS
-    // NUMBER OF DAYS IN MONTH
+    //DATE RANGE CALCULATIONS
+    //aantal dagen in de maand
     $daysInMonth = cal_days_in_month(CAL_GREGORIAN, $_POST["month"], $_POST["year"]);
-    // FIRST & LAST DAY OF MONTH
-    $dateFirst = "{$_POST["year"]}-{$_POST["month"]}-01";
-    $dateLast = "{$_POST["year"]}-{$_POST["month"]}-{$daysInMonth}";
-    // DAY OF WEEK - NOTE 0 IS SUNDAY
-    $dayFirst = (new DateTime($dateFirst))->format("w");
-    $dayLast = (new DateTime($dateLast))->format("w");
+    //eerste en laatste dag van de maand
+    $firstDayMonth = "{$_POST["year"]}-{$_POST["month"]}-01";
+    $lastDayMonth = "{$_POST["year"]}-{$_POST["month"]}-{$daysInMonth}";
+    //dag van de week - 0 is zondag
+    $firstDayWeek = (new DateTime($firstDayMonth))->format("w");
+    $lastDayWeek = (new DateTime($lastDayMonth))->format("w");
 
-    // (B2) DAY NAMES
-    $sunFirst = true; // CHANGE THIS IF YOU WANT MON FIRST
+    $sunIsFirstDay = false;
     $days = ["maandag", "dinsdag", "woensdag", "donderdag", "vrijdag", "zaterdag"];
-    if ($sunFirst) { array_unshift($days, "zondag"); }
+    if ($sunIsFirstDay) { array_unshift($days, "zondag"); }
     else { $days[] = "zondag"; }
     foreach ($days as $d) { echo "<div class='calsq head'>$d</div>"; }
     unset($days);
 
-    // (B3) PAD EMPTY SQUARES BEFORE FIRST DAY OF MONTH
-    if ($sunFirst) { $pad = $dayFirst; }
-    else { $pad = $dayFirst==0 ? 6 : $dayFirst-1 ; }
+    //PAD EMPTY SQUARES BEFORE FIRST DAY OF MONTH
+    if ($sunIsFirstDay) { $pad = $firstDayWeek; }
+    else { $pad = $firstDayWeek==0 ? 6 : $firstDayWeek-1 ; }
     for ($i=0; $i<$pad; $i++) { echo "<div class='calsq blank'></div>"; }
 
-    // (B4) DRAW DAYS IN MONTH
+    //DRAW DAYS IN MONTH
     $events = $_CAL->get($_POST["month"], $_POST["year"]);
-    $nowMonth = date("n");
-    $nowYear = date("Y");
-    $nowDay = ($nowMonth==$_POST["month"] && $nowYear==$_POST["year"]) ? date("j") : 0 ;
+    $currentMonth = date("n");
+    $currentYear = date("Y");
+    $currentDay = ($currentMonth==$_POST["month"] && $currentYear==$_POST["year"]) ? date("j") : 0 ;
     for ($day=1; $day<=$daysInMonth; $day++) { ?>
-    <div class="calsq day<?=$day==$nowDay?" today":""?>" data-day="<?=$day?>">
+    <div class="calsq day<?=$day==$currentDay?" today":""?>" data-day="<?=$day?>">
       <div class="calnum"><?=$day?></div>
         <?php if (isset($events["d"][$day])) { foreach ($events["d"][$day] as $eid) { ?>
         <div class="calevt" data-eid="<?=$eid?>"
@@ -47,13 +46,13 @@ switch ($_POST["req"]) {
     </div>
     <?php }
 
-    // (B5) PAD EMPTY SQUARES AFTER LAST DAY OF MONTH
-    if ($sunFirst) { $pad = $dayLast==0 ? 6 : 6-$dayLast ; }
-    else { $pad = $dayLast==0 ? 0 : 7-$dayLast ; }
+    //PAD EMPTY SQUARES AFTER LAST DAY OF MONTH
+    if ($sunIsFirstDay) { $pad = $lastDayWeek==0 ? 6 : 6-$lastDayWeek ; }
+    else { $pad = $lastDayWeek==0 ? 0 : 7-$lastDayWeek ; }
     for ($i=0; $i<$pad; $i++) { echo "<div class='calsq blank'></div>"; }
     break;
 
-  // (C) SAVE EVENT
+  //SAVE EVENT
   case "save":
     if (!is_numeric($_POST["eid"])) { $_POST["eid"] = null; }
     echo $_CAL->save(
@@ -62,8 +61,12 @@ switch ($_POST["req"]) {
     ) ? "OK" : $_CAL->error ;
     break;
 
-  // (D) DELETE EVENT
+  //DELETE EVENT
   case "del":
     echo $_CAL->del($_POST["eid"])  ? "OK" : $_CAL->error ;
     break;
 }
+
+/*
+  We hebben deze tutorial gevolgt: https://code-boxx.com/simple-php-calendar-events/ 
+*/
