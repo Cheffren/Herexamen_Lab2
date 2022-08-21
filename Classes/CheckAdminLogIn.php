@@ -10,7 +10,10 @@ class CheckAdminLogIn {
         $config = self::getConfig();
         $adminEmail = $config['adminEmail'];
         if($_SESSION["email"] !== $adminEmail){
-            header('Location: __DIR__ . /../live.php');
+            return true;
+        }
+        else{
+            return false;
         };
     }
 }
