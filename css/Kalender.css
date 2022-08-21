@@ -1,7 +1,5 @@
-/* (A) FONT */
 html, body { font-family: arial, sans-serif; }
 
-/* (B) PERIOD SELECTOR */
 #calPeriod input, #calPeriod select {
   padding: 10px;
   font-size: 1.5em;
@@ -12,7 +10,10 @@ html, body { font-family: arial, sans-serif; }
 #calmonth { width: 180px; }
 #calyear { width: 100px; text-align: center; }
 
-/* (C) CALENDAR */
+#calwrap, #calPeriod{
+ width: 90%;
+ margin: auto;
+}
 #calwrap {
   display: flex;
   flex-wrap: wrap;
@@ -24,14 +25,17 @@ html, body { font-family: arial, sans-serif; }
 }
 .calsq.head {
   color: #fff;
-  background: #5250da;
+  background: #558FA8;
+  padding-top: 10px;
+  padding-bottom: 10px;
   font-weight: bold;
   text-align: center;
 }
 .calsq.blank, .calsq.day {
-  height: 120px;
+  height: 130px;
   overflow-y: auto;
   border: 1px solid #eee;
+  background-color: #fafafa;
 }
 .calsq.blank { background: #f2f2f2; }
 .calsq.today { background: #fbffde; }
@@ -45,7 +49,6 @@ html, body { font-family: arial, sans-serif; }
 }
 .calninja { display: none; }
 
-/* (D) EVENT FORM */
 #calblock {
   position: fixed;
   top: 0; left: 0;
@@ -90,3 +93,7 @@ html, body { font-family: arial, sans-serif; }
 }
 #calformsave { background: #5250da; }
 #calformdel, #calformcx { background: #a22a2a; }
+
+/*
+  We hebben deze tutorial gevolgt: https://code-boxx.com/simple-php-calendar-events/ 
+*/
