@@ -1,42 +1,36 @@
 <?php
+require_once('../bootstrap.php');
 class Calendar {
-  // (A) CONSTRUCTOR - CONNECT TO DATABASE
   private $pdo = null;
   private $stmt = null;
   public $error = "";
+
   function __construct () {
     try {
-      $this->pdo = new PDO(
-        "mysql:host=".DB_HOST.";dbname=".DB_NAME.";charset=".DB_CHARSET,
-        DB_USER, DB_PASSWORD, [
-          PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-          PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
-        ]
-      );
-    } catch (Exception $ex) { exit($ex->getMessage()); }
+      $this->pdo = DB::getInstance();
+    }
+    catch (Exception $ex){
+      exit($ex->getMessage());
+    }
   }
 
-  // (B) DESTRUCTOR - CLOSE DATABASE CONNECTION
-  function __destruct () {
-    if ($this->stmt!==null) { $this->stmt = null; }
-    if ($this->pdo!==null) { $this->pdo = null; }
-  }
-
-  // (C) HELPER - EXECUTE SQL QUERY
+  //SQL statement uitvoeren
   function exec ($sql, $data=null) {
     try {
       $this->stmt = $this->pdo->prepare($sql);
       $this->stmt->execute($data);
       return true;
-    } catch (Exception $ex) {
+    }
+    //error opvangen als er iets is mis gegaan tijdens het uitvoeren van de sql statement
+    catch (Exception $ex) {
       $this->error = $ex->getMessage();
       return false;
     }
   }
 
-  // (D) SAVE EVENT
+  //Event opslaan
   function save ($start, $end, $txt, $color, $id=null) {
-    // (D1) START & END DATE QUICK CHECK
+    //START & END DATE QUICK CHECK
     $uStart = strtotime($start);
     $uEnd = strtotime($end);
     if ($uEnd < $uStart) {
@@ -44,7 +38,7 @@ class Calendar {
       return false;
     }
 
-    // (D2) SQL - INSERT OR UPDATE
+    //SQL - INSERT OR UPDATE
     if ($id==null) {
       $sql = "INSERT INTO `events` (`evt_start`, `evt_end`, `evt_text`, `evt_color`) VALUES (?,?,?,?)";
       $data = [$start, $end, $txt, $color];
@@ -53,23 +47,23 @@ class Calendar {
       $data = [$start, $end, $txt, $color, $id];
     }
 
-    // (D3) EXECUTE
+    //EXECUTE
     return $this->exec($sql, $data);
   }
 
-  // (E) DELETE EVENT
+  //DELETE EVENT
   function del ($id) {
     return $this->exec("DELETE FROM `events` WHERE `evt_id`=?", [$id]);
   }
 
-  // (F) GET EVENTS FOR SELECTED MONTH
+  //GET EVENTS FOR SELECTED MONTH
   function get ($month, $year) {
-    // (F1) FIST & LAST DAY OF MONTH
+    //FIST & LAST DAY OF MONTH
     $daysInMonth = cal_days_in_month(CAL_GREGORIAN, $month, $year);
     $dayFirst = "{$year}-{$month}-01 00:00:00";
     $dayLast = "{$year}-{$month}-{$daysInMonth} 23:59:59";
 
-    // (F2) GET EVENTS
+    //GET EVENTS
     if (!$this->exec(
       "SELECT * FROM `events` WHERE (
         (`evt_start` BETWEEN ? AND ?)
@@ -100,13 +94,9 @@ class Calendar {
     return $events;
   }
 }
-
-// (G) DATABASE SETTINGS - CHANGE TO YOUR OWN!
-define("DB_HOST", "localhost");
-define("DB_NAME", "lightpath");
-define("DB_CHARSET", "utf8");
-define("DB_USER", "root");
-define("DB_PASSWORD", "root");
-
-// (H) NEW CALENDAR OBJECT
+//Nieuw calender object maken
 $_CAL = new Calendar();
+
+/*
+  We hebben deze tutorial gevolgt: https://code-boxx.com/simple-php-calendar-events/ 
+*/
