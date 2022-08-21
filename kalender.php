@@ -57,4 +57,8 @@ require_once('includes/header.inc.php');
     <?php
     ?>
   </body>
+
+<?php 
+  //We hebben deze tutorial gevolgt: https://code-boxx.com/simple-php-calendar-events/ 
+?>
 </html>
